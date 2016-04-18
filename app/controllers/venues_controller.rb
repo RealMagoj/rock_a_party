@@ -17,9 +17,12 @@ class VenuesController < ApplicationController
 
   def create
     @venue = Venue.new(venue_params)
+    @venue_photo = VenuePhoto.new(venue_photo_params)
     @venue.user_id = current_user.id
-    
+
     if @venue.save
+      @venue_photo.venue_id = @venue.id
+      @venue_photo.save
       redirect_to venues_path
     else
       render :new
@@ -47,4 +50,9 @@ class VenuesController < ApplicationController
   def venue_params
     params.require(:venue).permit(:name, :logo, :address, :phone_number, :capacity, :avg_drink_price, :age_range, :description)
   end
+
+  def venue_photo_params
+    params.require(:venue_photo).permit(:photo)
+  end
+
 end

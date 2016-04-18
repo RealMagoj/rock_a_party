@@ -44,6 +44,15 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+  
+  <%= fields_for :venue_photo, @venue.venue_photo do |f| %>
+    <div>
+      <%= f.label :photo %><br>
+      <%= f.file_field :photo %>
+    </div>
+  <% end %>
+  <br>
+  
   <div>
     <%= f.submit "Save" %>
   </div>

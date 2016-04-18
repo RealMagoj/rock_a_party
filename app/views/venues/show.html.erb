@@ -11,3 +11,6 @@
 <h4>Average Drink Price: $<%= @venue.avg_drink_price %>.00</h4>
 <h4>Age Range: <%= @venue.age_range %></h4>
 <h4>Description: <%= @venue.description %></h4>
+<% @venue.venue_photo.each do |venue| %>
+  <%= image_tag venue.photo_url(:thumb).to_s %>
+<% end %>

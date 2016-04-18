@@ -30,7 +30,7 @@ class Venue < ActiveRecord::Base
     presence: true
 
   validates :description,
-    length: { maximum: 140 }
+    length: {maximum: 140}
 
   validates :user_id,
     presence: true
