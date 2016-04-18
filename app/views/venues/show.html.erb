@@ -1,0 +1,13 @@
+<%= link_to "Homepage", venues_path %>
+
+<h2><%= @venue.name %></h2>
+<% if current_user && @venue.user_id.to_i == current_user.id %>
+  (<%= link_to "Edit", edit_venue_path(@venue) %>, <%= link_to "Delete", venue_path(@venue), method: :delete, data: {confirm: "Are you sure?"} %>)
+<% end %>
+<h4><%= image_tag @venue.logo_url(:thumb).to_s %></h4>
+<h4>Address: <%= @venue.address %></h4>
+<h4>Phone Number: <%= @venue.phone_number %></h4>
+<h4>Capacity: <%= @venue.capacity %></h4>
+<h4>Average Drink Price: $<%= @venue.avg_drink_price %>.00</h4>
+<h4>Age Range: <%= @venue.age_range %></h4>
+<h4>Description: <%= @venue.description %></h4>

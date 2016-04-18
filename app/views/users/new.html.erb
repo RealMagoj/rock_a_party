@@ -1,0 +1,45 @@
+<h1>Sign Up</h1>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div>
+      <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :firstname, "First Name" %><br>
+    <%= f.text_field :firstname %>
+  </div>
+  <div>
+    <%= f.label :lastname, "Last Name" %><br>
+    <%= f.text_field :lastname %>
+  </div>
+  <div>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :email_confirmation %><br>
+    <%= f.text_field :email_confirmation %>
+  </div>
+  <div>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :birthday %><br>  
+    <%= f.date_select :birthday, {order: [:month, :day, :year], prompt: {month: "Month", day: "Day", year: "Year"}, start_year: Date.today.year - 19, end_year: Date.today.year - 100} %>
+  </div>
+  <div>
+    <%= f.radio_button :gender, "male" %>
+    <%= f.label :gender, "Male" %>
+    <%= f.radio_button :gender, "female" %>
+    <%= f.label :gender, "Female" %>
+  </div>
+  <div><%= f.submit "Submit" %></div>
+<% end %>
