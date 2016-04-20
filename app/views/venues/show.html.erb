@@ -2,7 +2,8 @@
 
 <h2><%= @venue.name %></h2>
 <% if current_user && @venue.user_id.to_i == current_user.id %>
-  (<%= link_to "Edit", edit_venue_path(@venue) %>, <%= link_to "Delete", venue_path(@venue), method: :delete, data: {confirm: "Are you sure?"} %>)
+  <%= link_to "Edit", edit_venue_path(@venue) %> | <%= link_to "Delete", venue_path(@venue), method: :delete, data: {confirm: "Are you sure?"} %><br>
+  <%= link_to "Create Event", new_venue_event_path(@venue) %>
 <% end %>
 <h4><%= image_tag @venue.logo_url(:thumb).to_s %></h4>
 <h4>Address: <%= @venue.address %></h4>
@@ -11,6 +12,15 @@
 <h4>Average Drink Price: $<%= @venue.avg_drink_price %>.00</h4>
 <h4>Age Range: <%= @venue.age_range %></h4>
 <h4>Description: <%= @venue.description %></h4>
-<% @venue.venue_photo.each do |venue| %>
-  <%= image_tag venue.photo_url(:thumb).to_s %>
+<% if @venue.venue_photos.all.length > 0 %>
+  <% @venue.venue_photos.each do |venue| %>
+    <%= image_tag venue.photo_url(:thumb).to_s %>
+  <% end %>
+<% end %>
+<br>
+<% if @venue.events.all.length > 0 %>
+  <h2>Events</h2>
+  <% @venue.events.each do |event| %>
+    <h3><%= link_to event.title + " @ #{@venue.name}, #{event.start_date}", venue_event_path(@venue, event) %></h3>
+  <% end %>
 <% end %>

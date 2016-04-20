@@ -1,0 +1,8 @@
+<%= link_to "Homepage", venues_path %>
+<h1>Events</h1>
+<%= link_to "Add Event", new_venue_event_path %>
+<% if @events.length > 0 %>
+  <% @events.each do |event| %>
+    <h2><%= link_to event.title, venue_event_path(@venue, event) %></h2>
+  <% end %>
+<% end %>

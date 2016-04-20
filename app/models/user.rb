@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_many :venue
+  has_many :venues
 
   has_secure_password
 

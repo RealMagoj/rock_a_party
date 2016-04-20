@@ -4,4 +4,7 @@ class VenuePhoto < ActiveRecord::Base
 
   mount_uploader :photo, ImageUploader
 
+  validates :venue_id,
+    presence: true
+
 end

@@ -1,7 +1,8 @@
 class Venue < ActiveRecord::Base
 
   belongs_to :user
-  has_many :venue_photo
+  has_many :venue_photos
+  has_many :events
 
   mount_uploader :logo, ImageUploader
 
