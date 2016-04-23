@@ -1,26 +1,57 @@
 <%= link_to "Homepage", venues_path %>
 
 <h2><%= @venue.name %></h2>
-<% if current_user && @venue.user_id.to_i == current_user.id %>
-  <%= link_to "Edit", edit_venue_path(@venue) %> | <%= link_to "Delete", venue_path(@venue), method: :delete, data: {confirm: "Are you sure?"} %><br>
-  <%= link_to "Create Event", new_venue_event_path(@venue) %>
-<% end %>
-<h4><%= image_tag @venue.logo_url(:thumb).to_s %></h4>
-<h4>Address: <%= @venue.address %></h4>
+<div id="venue_edit">
+  <% if current_user && @venue.user_id.to_i == current_user.id %>
+    <%= link_to "Edit", edit_venue_path(@venue) %> | <%= link_to "Delete", venue_path(@venue), method: :delete, data: {confirm: "Are you sure?"} %><br>
+    <%= link_to "Create Event", new_venue_event_path(@venue) %>
+  <% end %>
+</div>
+<div id="venue_logo"><%= image_tag @venue.logo_url(:thumb).to_s %></div>
+<div ="venue_photos">
+  <% if @venue.venue_photos.all.length > 0 %>
+    <% @venue.venue_photos.each do |venue| %>
+      <%= image_tag venue.photo_url(:small_thumb).to_s %>
+    <% end %>
+  <% end %>
+</div>
+<h4>Address: <span id='address'><%= @venue.address %></span></h4>
 <h4>Phone Number: <%= @venue.phone_number %></h4>
 <h4>Capacity: <%= @venue.capacity %></h4>
 <h4>Average Drink Price: $<%= @venue.avg_drink_price %>.00</h4>
 <h4>Age Range: <%= @venue.age_range %></h4>
 <h4>Description: <%= @venue.description %></h4>
-<% if @venue.venue_photos.all.length > 0 %>
-  <% @venue.venue_photos.each do |venue| %>
-    <%= image_tag venue.photo_url(:thumb).to_s %>
-  <% end %>
-<% end %>
-<br>
+<div id="map"></div>
 <% if @venue.events.all.length > 0 %>
   <h2>Events</h2>
   <% @venue.events.each do |event| %>
-    <h3><%= link_to event.title + " @ #{@venue.name}, #{event.start_date}", venue_event_path(@venue, event) %></h3>
+    <h3><%= link_to event.title + " @ #{@venue.name} - #{formatted_date(event.start_date)}", venue_event_path(@venue, event) %></h3>
   <% end %>
 <% end %>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD48-K20GtaJCsCjoJnNuutC7-Uul6CMUQ&callback=initMap">
+</script>
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 16,
+      center: {lat: 42.3149, lng: -83.0364}
+    });
+    var geocoder = new google.maps.Geocoder();
+    geocodeAddress(geocoder, map)
+  };
+  function geocodeAddress(geocoder, resultsMap) {
+    var address = document.getElementById('address').innerHTML;
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        resultsMap.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      };
+    });
+  };
+</script>

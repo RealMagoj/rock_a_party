@@ -12,4 +12,60 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui/datepicker
  */
+
+/*=================
+  Homepage
+=================*/
+
+#logo{
+  display: inline-block;
+}
+
+#login{
+  float: right;
+}
+
+#datepicker{
+  float: left;
+  clear: both;
+}
+
+#add_venue{
+  float: left;
+  clear: both;
+}
+
+#listings{
+  display: inline-block;
+}
+
+/*=================
+  Venue Profile
+=================*/
+
+#venue_edit{
+  display: block;
+}
+
+#venue_logo{
+  display: inline-block;
+  clear: both;
+}
+
+/*=================
+  Calendar
+=================*/
+
+div.ui-datepicker{
+  font-size:10px;
+}
+
+/*=================
+  Map
+=================*/
+#map{
+  height: 200px;
+  width: 300px;
+}

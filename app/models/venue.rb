@@ -1,8 +1,8 @@
 class Venue < ActiveRecord::Base
 
   belongs_to :user
-  has_many :venue_photos
-  has_many :events
+  has_many :venue_photos, dependent: :destroy
+  has_many :events, dependent: :destroy
 
   mount_uploader :logo, ImageUploader
 

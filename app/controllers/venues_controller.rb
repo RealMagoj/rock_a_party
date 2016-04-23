@@ -21,7 +21,7 @@ class VenuesController < ApplicationController
     @venue.user_id = current_user.id
     @venue.save
 
-    params[:venue_photos]["photo"].each do |file|
+    params[:venue_photos][:photo].each do |file|
       p = VenuePhoto.new
       p.venue_id = @venue.id
       p.photo = file

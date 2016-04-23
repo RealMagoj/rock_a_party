@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_many :venues
+  has_many :venues, dependent: :destroy
 
   has_secure_password
 
