@@ -1,6 +1,6 @@
-<%= form_for @event, :url => venue_events_path, :html => {:multipart => true} do |f| %>
+<%= form_for @event, :url => form_path, :html => {:multipart => true} do |f| %>
   <% if @event.errors.any? %>
-    <div>
+    <div id="event_form">
       <%= pluralize(@event.errors.count, "error") %> prevented the event from being created:
       <ul>
         <% @event.errors.full_messages.each do |msg| %>
@@ -10,16 +10,16 @@
     </div>
   <% end %>
   <div>
-    <%= f.label :title %><br>
+    <span id="event_form"><%= f.label :title %><br></span>
     <%= f.text_field :title %>
   </div>
   <div>
-    <%= f.label :date %><br>
+    <span id="event_form"><%= f.label :date %><br></span>
     <%= f.date_select :start_date %>
   </div>
   <div>
-    <%= f.label :ad %><br>
-    <%= f.file_field :ad %>
+    <span id="event_form"><%= f.label :ad %><br></span>
+    <span id="event_form"><%= f.file_field :ad %></span>
   </div>
   <br>
   <div>

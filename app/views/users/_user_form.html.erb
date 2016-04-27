@@ -1,6 +1,6 @@
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
-    <div>
+    <div id="signup_form">
       <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
       <ul>
         <% @user.errors.full_messages.each do |msg| %>
@@ -10,34 +10,34 @@
     </div>
   <% end %>
   <div>
-    <%= f.label :firstname, "First Name" %><br>
+    <span id="signup_form"><%= f.label :firstname, "First Name" %><br></span>
     <%= f.text_field :firstname %>
   </div>
   <div>
-    <%= f.label :lastname, "Last Name" %><br>
+    <span id="signup_form"><%= f.label :lastname, "Last Name" %><br></span>
     <%= f.text_field :lastname %>
   </div>
   <div>
-    <%= f.label :email %><br>
+    <span id="signup_form"><%= f.label :email %><br></span>
     <%= f.text_field :email %>
   </div>
   <div>
-    <%= f.label :email_confirmation %><br>
+    <span id="signup_form"><%= f.label :email_confirmation %><br></span>
     <%= f.text_field :email_confirmation %>
   </div>
   <div>
-    <%= f.label :password %><br>
+    <span id="signup_form"><%= f.label :password %><br></span>
     <%= f.password_field :password %>
   </div>
   <div>
-    <%= f.label :birthday %><br>  
+    <span id="signup_form"><%= f.label :birthday %><br></span>
     <%= f.date_select :birthday, {order: [:month, :day, :year], prompt: {month: "Month", day: "Day", year: "Year"}, start_year: Date.today.year - 19, end_year: Date.today.year - 100} %>
   </div>
   <div>
     <%= f.radio_button :gender, "male" %>
-    <%= f.label :gender, "Male" %>
+    <span id="signup_form"><%= f.label :gender, "Male" %></span>
     <%= f.radio_button :gender, "female" %>
-    <%= f.label :gender, "Female" %>
+    <span id="signup_form"><%= f.label :gender, "Female" %></span>
   </div>
   <div><%= f.submit "Submit" %></div>
 <% end %>

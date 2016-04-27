@@ -1,4 +1,11 @@
-<%= link_to "Back to venue", venue_path(@venue) %>
-<h2><%= @event.title %></h2>
-<h4><%= image_tag @event.ad_url.to_s %></h4>
-<h4>Date: <%= formatted_date(@event.start_date) %></h4>
+<%= link_to "Back to Venue", venue_path(@venue) %>
+<div id="event_details">
+  <h2 id="event_title"><%= @event.title %></h2>
+  <div id="event_edit">
+    <% if current_user && @venue.user_id.to_i == current_user.id %>
+      <%= link_to "Edit", edit_venue_event_path(@venue, @event) %> | <%= link_to "Delete", venue_event_path(@venue, @event), method: :delete, data: {confirm: "Are you sure?"} %><br>
+    <% end %>
+  </div>
+  <div><%= image_tag @event.ad_url.to_s %></div>
+  <h4>Date: <%= formatted_date(@event.start_date) %></h4>
+</div>

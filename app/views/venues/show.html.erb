@@ -1,6 +1,4 @@
-<%= link_to "Homepage", venues_path %>
-
-<h2><%= @venue.name %></h2>
+<h2 id="venue_name"><%= @venue.name %></h2>
 <div id="venue_edit">
   <% if current_user && @venue.user_id.to_i == current_user.id %>
     <%= link_to "Edit", edit_venue_path(@venue) %> | <%= link_to "Delete", venue_path(@venue), method: :delete, data: {confirm: "Are you sure?"} %><br>
@@ -15,17 +13,22 @@
     <% end %>
   <% end %>
 </div>
-<h4>Address: <span id='address'><%= @venue.address %></span></h4>
-<h4>Phone Number: <%= @venue.phone_number %></h4>
-<h4>Capacity: <%= @venue.capacity %></h4>
-<h4>Average Drink Price: $<%= @venue.avg_drink_price %>.00</h4>
-<h4>Age Range: <%= @venue.age_range %></h4>
-<h4>Description: <%= @venue.description %></h4>
+<div id="venue_details">
+  <h4>Address: <span id='address'><%= @venue.address %></span></h4>
+  <h4>Phone Number: <%= @venue.phone_number %></h4>
+  <h4>Capacity: <%= @venue.capacity %></h4>
+  <h4>Average Drink Price: $<%= @venue.avg_drink_price %>.00</h4>
+  <h4>Age Range: <%= @venue.age_range %></h4>
+  <h4>Description: <%= @venue.description %></h4>
+</div>
 <div id="map"></div>
 <% if @venue.events.all.length > 0 %>
-  <h2>Events</h2>
-  <% @venue.events.each do |event| %>
-    <h3><%= link_to event.title + " @ #{@venue.name} - #{formatted_date(event.start_date)}", venue_event_path(@venue, event) %></h3>
+  <h2 id="venue_events">Events</h2>
+  <% @venue.events.order('start_date').each do |event| %>
+    <div class="modal_container event<%= event.id %>"><%= image_tag event.ad_url.to_s, :class => "image_event#{event.id}" %></div>
+    <div>
+      <h3 id="blue_text" class="open_event" data-event="<%= event.id %>"><%= event.title + " @ #{@venue.name} - #{formatted_date(event.start_date)}" %></h3>
+    </div>
   <% end %>
 <% end %>
 <script async defer
@@ -54,4 +57,11 @@
       };
     });
   };
+  $('.open_event').click(function() {
+    var eventId = $(this).data('event')
+    $(`.modal_container.event${eventId}`).show()
+  });
+  $('.modal_container').click(function() {
+    $('.modal_container').hide()
+  });
 </script>

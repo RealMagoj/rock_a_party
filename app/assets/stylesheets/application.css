@@ -19,26 +19,69 @@
   Homepage
 =================*/
 
-#logo{
-  display: inline-block;
+#alerts{
+  color: #337ab7;
+  padding-left: 25px;
+}
+
+#blue_text{
+  color: #337ab7;
+}
+
+body{
+  background-image: url("http://orig08.deviantart.net/578d/f/2011/127/4/d/black_wood_background_by_egosumpotens-d3fst0k.jpg");
+  background-size: 100%;
 }
 
 #login{
   float: right;
+  padding-right: 10px;
+}
+
+#header{
+  width: 100%;
+  height: 225px;
+  background-image: url("http://wikitravel.org/upload/shared//3/34/Detroit_Banner.jpg");
+  background-size: 100% 100%;
+}
+
+#logo{
+  height: 125px;
 }
 
 #datepicker{
+  text-align: center;
+  color: #337ab7;
   float: left;
   clear: both;
+  padding-left: 25px;
+  padding-top: 20px;
 }
 
 #add_venue{
+  border-radius: 5px;
   float: left;
   clear: both;
+  display: inline-block;
+  margin-left: 63px;
 }
 
 #listings{
   display: inline-block;
+  padding-left: 50px;
+}
+
+div#listings h2{
+  color: #800000;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+#show_all_events{
+  border-radius: 5px;
+}
+
+#no_events_alert{
+  color: #337ab7;
 }
 
 /*=================
@@ -54,6 +97,49 @@
   clear: both;
 }
 
+#venue_name{
+  color: #800000;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; 
+}
+
+#venue_events{
+  color: #800000;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+#venue_details{
+  color: #337ab7;
+}
+
+.modal_container{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.modal_container img{
+  height: 100%;
+  padding: 4rem;
+}
+
+/*=================
+  Event Page
+=================*/
+
+#event_details{
+  color: #337ab7; 
+}
+
+#event_title{
+  color: #800000;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; 
+}
+
 /*=================
   Calendar
 =================*/
@@ -65,7 +151,60 @@ div.ui-datepicker{
 /*=================
   Map
 =================*/
+
 #map{
   height: 200px;
   width: 300px;
+}
+
+/*=================
+  Signup Form
+=================*/
+
+#signup_form{
+  color: #337ab7;
+}
+
+#signup_form_title{
+  color: #800000;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+/*=================
+  Login Form
+=================*/
+
+#login_form{
+  color: #337ab7;  
+}
+
+#login_form_title{
+  color: #800000;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+/*=================
+  Venue Form
+=================*/
+
+#venue_form_title{
+  color: #800000;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; 
+}
+
+#venue_form{
+  color: #337ab7;  
+}
+
+/*=================
+  Event Form
+=================*/
+
+#event_form_title{
+  color: #800000;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; 
+}
+
+#event_form{
+  color: #337ab7;  
 }

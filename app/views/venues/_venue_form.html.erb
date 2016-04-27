@@ -1,6 +1,6 @@
 <%= form_for @venue, :html => {:multipart => true} do |f| %>
   <% if @venue.errors.any? %>
-    <div>
+    <div id="venue_form">
       <%= pluralize(@venue.errors.count, "error") %> prevented the venue from being created:
       <ul>
         <% @venue.errors.full_messages.each do |msg| %>
@@ -10,42 +10,42 @@
     </div>
   <% end %>
   <div>
-    <%= f.label :name %><br>
+    <span id="venue_form"><%= f.label :name %><br></span>
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :logo %><br>
-    <%= f.file_field :logo %>
+    <span id="venue_form"><%= f.label :logo %><br></span>
+    <span id="venue_form"><%= f.file_field :logo %></span>
   </div>
   <div>
-    <%= f.label :address, "Address (street, city, province):" %><br>
+    <span id="venue_form"><%= f.label :address, "Address (street, city, province):" %><br></span>
     <%= f.text_field :address %>
   </div>
   <div>
-    <%= f.label :phone_number %><br>
+    <span id="venue_form"><%= f.label :phone_number %><br></span>
     <%= f.text_field :phone_number %>
   </div>
   <div>
-    <%= f.label :capacity %><br>
+    <span id="venue_form"><%= f.label :capacity %><br></span>
     <%= f.number_field :capacity, {min: "1"} %>
   </div>
   <div>
-    <%= f.label :avg_drink_price, "Average Drink Price" %><br>
+    <span id="venue_form"><%= f.label :avg_drink_price, "Average Drink Price" %><br></span>
     <%= f.number_field :avg_drink_price, {min: "1"} %>
   </div>
   <div>
-    <%= f.label :age_range %><br>
+    <span id="venue_form"><%= f.label :age_range %><br></span>
     <%= f.select :age_range, options_for_select([["--select--", ""], ["19-25"], ["25-35"], ["35+"]]) %>
   </div>
   <div>
-    <%= f.label :description %><br>
+    <span id="venue_form"><%= f.label :description %><br></span>
     <%= f.text_area :description %>
   </div>
   
   <%= fields_for :venue_photos, @venue.venue_photos do |p| %>
     <div>
-      <%= p.label :photo %><br>
-      <%= p.file_field :photo, multiple: true %>
+      <span id="venue_form"><%= p.label :photo %><br></span>
+      <span id="venue_form"><%= p.file_field :photo, multiple: true %></span>
     </div>
   <% end %>
   <br>

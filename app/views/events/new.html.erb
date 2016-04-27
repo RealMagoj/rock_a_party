@@ -1,5 +1,5 @@
 <%= link_to "Back to venue", venue_path(@venue) %>
 
-<h1>Create Event</h1>
+<h1 id="event_form_title">Create Event</h1>
 
-<%= render 'event_form' %>
+<%= render 'event_form', form_path: venue_events_path(@venue) %>

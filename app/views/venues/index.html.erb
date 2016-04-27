@@ -1,32 +1,50 @@
-<h1 id='logo'>Rock-a-Party</h1>
-<form id="login"><%= render '/sessions/session_form' %></form>
-<br>
 <div id="datepicker" data-provide='datepicker'>Select day to view events:</div>
-<br>
-<div id="add_venue">
   <% if current_user %>
-    <%= link_to "Add Venue", new_venue_path %>
+    <button id="add_venue" type="button"><%= link_to "Add Venue", new_venue_path %></button>
   <% end %>
-</div>
 <div id="listings">
+  <h2>Venues</h2>
   <% if @venues.length > 0 %>
-    <h2>Venues</h2>
     <% @venues.each do |venue| %>
       <h3><%= link_to venue.name, venue_path(venue) %></h3>
     <% end %>
+  <% else %>
+    <h3 id="blue_text">No Venues Listed</h>
   <% end %>
-  <% if Event.all.length > 0 %>
-    <h2>Events</h2>
-    <% Event.all.each do |event| %>
-      <h3><%= link_to event.title, venue_event_path(event.venue_id, event) %></h3>
+  <div id="events">
+    <h2>Events </h2>
+    <% if Event.all.length > 0 %>
+      <button id="show_all_events" type="button">Show All Events</button>
+      <% Event.all.order('start_date').each do |event| %>
+        <h3 class="event_listing"><%= link_to event.title + " - #{formatted_date(event.start_date)}", venue_event_path(event.venue_id, event), data: {event_date: event.start_date.strftime("%m/%d/%Y")} %></h3>
+      <% end %>
+    <% else %>
+      <h3 id="blue_text">No Events Listed</h3>
     <% end %>
-  <% end %>
-  <br>
+  </div>
 </div>
 <script>
 $(function() {
-  $('#datepicker').datepicker().on('changeDate', function(){
-
+  $('#datepicker').datepicker({
+    onSelect: function(dateString) {
+      $('#no_events_alert').remove();
+      $('#events a').each(function(index, event_link) {
+        if (dateString == $(event_link).data('event-date')){
+          $(event_link).show();
+        } else {
+          $(event_link).hide();
+        };
+      });
+      if ($('#events a:visible').length < 1) {
+        $('#events').append("<h3 id='no_events_alert'>No Events Listed Today</h3>");
+      };
+    }
+  });
+});
+$('#show_all_events').click(function(){
+  $('#no_events_alert').remove();
+  $('#events a').each(function(index, event_link) {
+    $(event_link).show();
   });
 });
 </script>

@@ -161,7 +161,7 @@ DEPENDENCIES
   mini_magick
   rails (= 4.2.6)
   rmagick
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0.4)
   sdoc (~> 0.4.0)
   spring
   sqlite3
